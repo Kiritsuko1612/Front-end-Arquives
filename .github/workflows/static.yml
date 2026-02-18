@@ -1,0 +1,33 @@
+name: Deploy do Acervo de Raposas
+
+on:
+  push:
+    branches: ["main"] # Dispara sempre que houver push na main
+  workflow_dispatch:      # Permite rodar manualmente na aba "Actions"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4 # Passo 2: Baixa o conteúdo do repo
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # Passo 4: Carrega os arquivos estáticos
+        with:
+          path: '.' # Indica que os arquivos estão na pasta raiz
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # Passo 5: Faz o deploy real

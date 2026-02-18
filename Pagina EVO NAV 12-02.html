@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Querido Site</title>
+    <style>
+        /* Estilo da Assinatura */
+        .assinatura {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 80px;
+            z-index: 1000;
+            border-radius: 10px;
+        }
+
+        /* Menu de Navegação */
+        nav { 
+            background-color: #d1a360; /* Cor corrigida */
+            font-family: "Segoe UI", sans-serif;
+            width: 100%;
+        }
+
+        nav ul { 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Digitação corrigida */
+        } 
+
+        nav ul li a {
+            display: block; /* Digitação corrigida */
+            padding: 15px 20px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.4s;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a6296;
+        }
+
+        /* Estilo do Corpo */
+        body {
+            background-color: #c1905a;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Troquei Comic Sans por algo mais limpo, mas você pode voltar se preferir! */
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Faz os itens ficarem um abaixo do outro */
+            align-items: center;    /* Centraliza horizontalmente */
+            color: white;
+        }
+
+        h1 { margin-top: 50px; }
+	/* Conteúdo central */
+.conteudo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 12px;
+}
+
+.card {
+    width: min(900px, 95%);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    backdrop-filter: blur(6px);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.video {
+    margin-top: 14px;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* mantém formato certinho */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.botoes {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: rgba(0,0,0,0.28);
+}
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="https://github.com/ProfDacioMachado/PROGRAMA-O-FRONT-END-2026-/tree/main">GitHub Professor</a></li>
+            <li><a href="https://gemini.google.com/app?hl=pt-BR">Gemini</a></li>
+            <li><a href="https://www.amazon.com.br/">Amazon</a></li>
+            <li><a href="https://shopee.com.br/">Shopee</a></li>
+        </ul>
+    </nav>
+
+    <h1>Meu querido Site</h1>
+    <p>Isso está lindo demais</p>
+
+        <main class="conteudo">
+        <section class="card">
+            <h2>Cantinho das Raposas 🦊</h2>
+            <p>Um espaço fofinho pra treinar HTML/CSS e deixar o site com cara de página real.</p>
+
+            <div class="video">
+                <iframe
+                    src="https://www.youtube.com/live/F0GOOP82094?si=vi91ySeAzaHip2Ju"
+                    title="Vídeo de raposas"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="botoes">
+                <a class="btn" href="https://pt.wikipedia.org/wiki/Raposa" target="_blank">Sobre raposas</a>
+                <a class="btn" href="https://youtu.be/CEW6OsI222s?si=X4FW1ygO61ZoGuVQ"_blank">Mais vídeos</a>
+            </div>
+        </section>
+    </main>
+
+
+    <img src="https://media1.tenor.com/m/92qdqQdsWogAAAAd/spice-and-wolf-spice-and-wolf-remake.gif" 
+         alt="Assinatura Holo" 
+         class="assinatura">
+
+</body>
+</html>
