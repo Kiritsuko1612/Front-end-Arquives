@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compreendendo o Kanban</title>
+
+    <style>
+        /* 1. RESET BÁSICO */
+        /* Isso garante que o navegador não coloque margens surpresas no seu layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 2. ESTILO DO CORPO E FUNDO */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf6e3; /* Um fundo creme/amarelado bem suave */
+            color: #333;
+            line-height: 1.6; /* Melhora a leitura do texto */
+        }
+
+        /* 3. CONTAINER PRINCIPAL (Responsividade) */
+        /* Isso centraliza o site e impede que ele fique gigante em monitores largos */
+        #main-container {
+            max-width: 900px;
+            margin: 20px auto; /* Auto nas laterais centraliza o elemento */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Uma sombra bem suave */
+        }
+
+        /* 4. CABEÇALHO E NAVEGAÇÃO */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e08e36; /* Cor de raposa */
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #e08e36;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            display: flex; /* Flexbox é o seu melhor amigo para alinhar coisas! */
+            justify-content: center;
+            flex-wrap: wrap; /* Se a tela for pequena, os botões quebram de linha */
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            background-color: #e08e36;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+        }
+
+        nav a:hover {
+            background-color: #c0772b;
+        }
+
+        /* 5. SEÇÕES E TEXTOS */
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2, h3 {
+            color: #b5651d;
+            margin-bottom: 15px;
+        }
+
+        p, ul {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* 6. IMAGENS RESPONSIVAS */
+        img {
+            max-width: 100%; /* A imagem nunca vai ultrapassar a largura da tela */
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 20px auto; /* Centraliza a imagem */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 7. FORMULÁRIO */
+        fieldset {
+            border: 2px solid #f0d3b6;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fffaf5;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #e08e36;
+            padding: 0 10px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%; /* Ocupa todo o espaço disponível */
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        input[type="submit"] {
+            background-color: #e08e36;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c0772b;
+        }
+
+        /* 8. RODAPÉ E ASSINATURA */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+        }
+
+        .assinatura {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            z-index: 1000;
+            border-radius: 10px;
+            margin: 0; /* Tira a margem padrão das imagens para a assinatura ficar no cantinho */
+            box-shadow: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="main-container">
+        <header>
+            <h1>O que é o Kanban?</h1>
+            <p>O Kanban é uma metodologia ágil de gerenciamento de projetos que se concentra na visualização do fluxo de trabalho e na limitação do trabalho em andamento. Ele é baseado em um quadro visual, onde as tarefas são representadas por cartões que se movem através de diferentes etapas do processo, como "A Fazer", "Em Progresso" e "Concluído". O objetivo do Kanban é melhorar a eficiência e a colaboração da equipe, permitindo que todos tenham uma visão clara do progresso do projeto e possam identificar gargalos ou áreas de melhoria.</p>
+        </header>
+
+        <nav>   
+            <a href="#sobre">Sobre</a>
+            <a href="#exemplos">Exemplos</a>
+            <a href="#didaticas">Didáticas</a>
+            <a href="#beneficios">Benefícios</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <section id="sobre">
+            <h2>Sobre o Kanban</h2>
+            <p>Originado no Japão nas fábricas da Toyota, a palavra 'Kanban' significa literalmente 'cartão visual'. Enquanto a nossa introdução foca em como os quadros funcionam hoje, é importante entender a sua essência: o sistema 'puxado'. Em vez de empurrar dezenas de demandas de uma vez, você só 'puxa' um novo cartão para a coluna 'Em Progresso' quando realmente tem capacidade para lidar com ele. Na prática de quem trabalha com desenvolvimento de software ou tem uma rotina intensa de estudos, isso significa parar de começar várias coisas ao mesmo tempo e focar em terminar o que já foi iniciado, reduzindo a ansiedade e garantindo entregas com muito mais qualidade.</p>
+            <img src="https://thomazribas.com/wp-content/uploads/2021/02/metodo-kakban-como-adotar-4.jpg" alt="Exemplo de quadro Kanban">
+        </section>
+
+        <section id="exemplos"> 
+            <h3>Exemplos de uso do Kanban</h3>
+            <p>O Kanban pode ser aplicado em praticamente qualquer projeto para organizar o fluxo de trabalho. Na engenharia de software, por exemplo, ao planejar o desenvolvimento de uma inteligência artificial complexa como a Aurora, você poderia usar o quadro visual para mapear todas as funcionalidades. A coluna 'A Fazer' poderia conter cartões como 'Implementar módulo de memória de longo prazo', enquanto 'Em Progresso' mostraria 'Estruturar respostas emocionais', e 'Concluído' exibiria as rotinas já testadas. Isso evita que o desenvolvedor se perca nas ideias e mantém o foco na entrega contínua.</p>
+            <img src="https://www.semeru.com.br/blog/wp-content/uploads/2012/09/teste.png" alt="Exemplo de quadro Kanban para desenvolvimento de software">
+        </section>
+
+        <section id="didaticas">
+            <h3>Didáticas e Fundamentos Oficiais</h3>
+            <p>Para compreendermos o método com profundidade, é fundamental consultarmos a literatura técnica sobre o tema, como "O Guia Oficial do Método Kanban" da Kanban University. Segundo o manual, o Kanban não é uma metodologia prescritiva ou um framework incompleto, mas sim um método de gestão ou abordagem que deve ser aplicado a processos já existentes, sendo ideal para gerenciar o trabalho do conhecimento e serviços profissionais. A didática do método baseia-se em princípios fundamentais de gestão de mudanças: começar com o que você faz hoje, concordar em buscar a melhoria por meio de mudanças evolucionárias e encorajar atos de liderança em todos os níveis da organização. Além disso, a aplicação prática do Kanban é sustentada por seis práticas gerais: visualizar o trabalho, limitar o Trabalho em Progresso (WIP), gerenciar o fluxo, tornar as políticas explícitas, implementar ciclos de feedback e, por fim, melhorar colaborativamente e evoluir experimentalmente. Uma metáfora didática muito utilizada pelo guia oficial é a "Kan-Bahn", que compara o sistema a uma rodovia alemã (Autobahn): o foco não deve ser colocar o máximo de veículos na estrada até congestionar (alta utilização), mas sim garantir que o tráfego flua de maneira contínua, rápida e previsível (vazão), limitando a entrada de novos carros para evitar gargalos e atrasos no sistema. Portanto, limitar o WIP (trabalho em progresso) é essencial para equilibrar a capacidade da equipe, reduzir a mudança de contexto e garantir a fluidez do processo.</p>
+        </section>
+
+        <section id="beneficios">
+            <h3>Benefícios do Kanban</h3>
+            <p>O Kanban oferece diversos benefícios para empresas e equipes que desejam tornar seus processos mais eficientes e transparentes. Ao visualizar o fluxo de trabalho em tempo real, é possível identificar gargalos e melhorar continuamente as entregas. Além disso, o método aumenta a colaboração e facilita a comunicação, resultando em mais produtividade e controle operacional. Veja as principais vantagens:</p>
+            
+            <ul>
+                <li><strong>Melhor visualização e transparência:</strong> o quadro permite enxergar o status de cada tarefa, tornando o fluxo claro e acessível a todos.</li>
+                <li><strong>Maior produtividade e eficiência:</strong> ao limitar o número de tarefas em andamento (WIP), o time foca em concluir atividades, evitando dispersão e atrasos.</li>
+                <li><strong>Comunicação integrada:</strong> com informações centralizadas, todos os membros sabem o que está sendo feito, por quem e em qual etapa.</li>
+                <li><strong>Mais agilidade e flexibilidade:</strong> o método se adapta facilmente às mudanças de prioridade e às demandas do projeto.</li>
+                <li><strong>Menos retrabalho e erros:</strong> a visualização das tarefas reduz falhas e duplicidades, garantindo entregas mais consistentes.</li>
+                <li><strong>Cultura de melhoria contínua:</strong> o acompanhamento constante permite revisar processos e implementar ajustes frequentes.</li>
+                <li><strong>Tomada de decisão mais assertiva:</strong> a transparência dos dados ajuda a analisar o desempenho e tomar decisões com base em fatos.</li>
+            </ul>
+
+            <p>Dessa forma, o Kanban se torna uma ferramenta essencial para quem busca organização, eficiência e crescimento sustentável.</p>
+            
+            <img src="https://webmaissistemas.com.br/blog/app/uploads/2022/01/vantagens-do-sistema-kanban.webp" alt="Benefícios do Kanban">
+        </section>
+
+        <section id="contato">
+            <h3>Contato</h3>
+            <form>
+                <fieldset>
+                    <legend> Envie uma mensagem 🦊💬 </legend>
+                    <label for="nome">Nome:</label><br>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo"><br><br>
+
+                    <label>Gênero:</label><br>
+                    <div style="margin-top: 5px;">
+                        <input type="radio" name="genero" id="masc"> <label for="masc">Masculino</label>
+                        <input type="radio" name="genero" id="fem" style="margin-left: 10px;"> <label for="fem">Feminino</label>
+                        <input type="radio" name="genero" id="outro" style="margin-left: 10px;"> <label for="outro">Outro</label>
+                    </div><br>
+
+                    <label for="duvidas">Dúvidas ou sugestões:</label><br>
+                    <textarea id="duvidas" name="duvidas" rows="4" placeholder="Escreva aqui sua mensagem..."></textarea><br><br>
+
+                    <label>Avalie este material didático:</label><br>
+                    <div style="margin-top: 5px; line-height: 1.8;">
+                        <input type="radio" name="avaliacao" value="1" id="av1"> <label for="av1">⭐ Péssimo</label><br>
+                        <input type="radio" name="avaliacao" value="2" id="av2"> <label for="av2">⭐⭐ Ruim</label><br>
+                        <input type="radio" name="avaliacao" value="3" id="av3"> <label for="av3">⭐⭐⭐ Regular</label><br>
+                        <input type="radio" name="avaliacao" value="4" id="av4"> <label for="av4">⭐⭐⭐⭐ Bom</label><br>
+                        <input type="radio" name="avaliacao" value="5" id="av5"> <label for="av5">⭐⭐⭐⭐⭐ Excelente</label>
+                    </div>
+
+                    <input type="submit" value="Enviar Mensagem">
+                </fieldset>
+            </form>
+            <p style="margin-top: 15px; text-align: center;">Email: thewisefox@gmail.com | <a href="mailto:thewisefox@gmail.com" style="color: #e08e36; text-decoration: none; font-weight: bold;">Enviar Email Direto</a></p>
+        </section>
+
+        <footer>
+            <p>© 2026 O Kanban e a Raposa. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <img src="https://media1.tenor.com/m/92qdqQdsWogAAAAd/spice-and-wolf-spice-and-wolf-remake.gif" alt="Assinatura Holo" class="assinatura">
+
+</body>
+</html>
