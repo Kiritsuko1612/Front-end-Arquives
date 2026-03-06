@@ -1,0 +1,569 @@
+/* ============================================================
+           1. RESET UNIVERSAL — zeramos margens e padding de tudo
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ============================================================
+           2. VARIÁVEIS DE COR — paleta única para toda a página
+              (facilita mudar a cor em um lugar só)
+           ============================================================ */
+        :root {
+            --azul-escuro:  #0D47A1;
+            --azul-medio:   #1565C0;
+            --azul-claro:   #1E88E5;
+            --azul-suave:   #E3F2FD;
+            --verde-accent: #00BFA5;
+            --laranja:      #FF6F00;
+            --vermelho:     #C62828;
+            --cinza-fundo:  #F0F4F8;
+            --cinza-card:   #FFFFFF;
+            --cinza-borda:  #CFD8DC;
+            --texto-escuro: #1A237E;
+            --texto-normal: #263238;
+            --texto-suave:  #546E7A;
+            --sombra:       0 4px 16px rgba(0,0,0,0.10);
+            --sombra-hover: 0 8px 24px rgba(0,0,0,0.18);
+            --raio:         12px;
+            --raio-btn:     8px;
+        }
+
+        /* ============================================================
+           3. CORPO DA PÁGINA — fonte, fundo e cor base
+           ============================================================ */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            background-color: var(--cinza-fundo);
+            color: var(--texto-normal);
+        }
+
+        /* ============================================================
+           4. CONTAINER PRINCIPAL — limita a largura e centraliza
+           ============================================================ */
+        #pagina, main, body > section, body > nav, body > header:not(:first-child) {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           5. HEADER — cabeçalho com gradiente e destaque visual
+           ============================================================ */
+        header {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-claro) 100%);
+            color: white;
+            padding: 60px 40px 48px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Linha decorativa embaixo do header */
+        header::after {
+            content: '';
+            display: block;
+            height: 4px;
+            background: linear-gradient(to right, var(--verde-accent), var(--laranja));
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            opacity: 0.88;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           6. NAVEGAÇÃO — barra de menu com links estilizados
+           ============================================================ */
+        nav {
+            background-color: var(--azul-medio);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 16px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.25s, color 0.25s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--verde-accent);
+            color: white;
+        }
+
+        /* ============================================================
+           7. MAIN — conteúdo principal com padding
+           ============================================================ */
+        main {
+            padding: 40px 20px;
+        }
+
+        /* ============================================================
+           8. SEÇÕES — separação visual entre blocos
+           ============================================================ */
+        section {
+            background-color: var(--cinza-card);
+            border-radius: var(--raio);
+            padding: 36px 32px;
+            margin-bottom: 36px;
+            box-shadow: var(--sombra);
+            border-left: 5px solid var(--azul-claro);
+        }
+
+        /* Seção extra (fora do main) */
+        body > section {
+            margin: 20px auto 36px;
+            padding: 36px 32px;
+        }
+
+        section h2 {
+            font-size: 1.6rem;
+            color: var(--azul-escuro);
+            margin-bottom: 28px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--azul-suave);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h2::before {
+            content: '▸';
+            color: var(--verde-accent);
+            font-size: 1.2rem;
+        }
+
+        /* ============================================================
+           9. ARTICLES — cards para cada conteúdo
+           ============================================================ */
+        article {
+            background-color: var(--azul-suave);
+            border-radius: var(--raio);
+            padding: 22px 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--cinza-borda);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        article:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        article h3 {
+            font-size: 1.15rem;
+            color: var(--azul-medio);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        article p {
+            color: var(--texto-normal);
+            margin-bottom: 8px;
+        }
+
+        /* ============================================================
+           10. BLOCKQUOTE — citações em destaque
+           ============================================================ */
+        blockquote {
+            border-left: 4px solid var(--verde-accent);
+            background-color: #E0F7FA;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 0 var(--raio) var(--raio) 0;
+            font-style: italic;
+            color: var(--texto-suave);
+            position: relative;
+        }
+
+        blockquote::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--verde-accent);
+            opacity: 0.4;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: serif;
+        }
+
+        /* ============================================================
+           11. CÓDIGO E PRE — visual de terminal
+           ============================================================ */
+        code {
+            background-color: #1A237E;
+            color: #A5D6A7;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        pre {
+            background-color: #212121;
+            color: #80CBC4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            padding: 20px 24px;
+            border-radius: var(--raio);
+            overflow-x: auto;
+            margin: 16px 0;
+            border: 1px solid #37474F;
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+           12. ASIDE — destaque lateral para curiosidades
+           ============================================================ */
+        aside {
+            background: linear-gradient(135deg, #FFF8E1, #FFF3E0);
+            border-left: 4px solid var(--laranja);
+            border-radius: 0 var(--raio) var(--raio) 0;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        aside h4 {
+            color: var(--laranja);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        aside p {
+            color: var(--texto-normal);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================================
+           13. DETAILS / SUMMARY — expansíveis estilizados
+           ============================================================ */
+        details {
+            background-color: #EDE7F6;
+            border-radius: var(--raio);
+            padding: 12px 16px;
+            margin-top: 12px;
+            border: 1px solid #D1C4E9;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4527A0;
+            padding: 4px 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        summary::before {
+            content: '▶';
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        details p {
+            margin-top: 10px;
+            color: var(--texto-suave);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================================
+           14. TABELAS — visual de dashboard
+           ============================================================ */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: var(--raio);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            border: none;
+        }
+
+        caption {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            padding: 12px;
+            text-align: left;
+            background-color: var(--azul-suave);
+            border-radius: var(--raio) var(--raio) 0 0;
+        }
+
+        thead tr, table > tr:first-child {
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul-medio));
+        }
+
+        th {
+            color: white;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+
+        td {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--cinza-borda);
+            font-size: 0.95rem;
+            border: none;
+        }
+
+        tbody tr:nth-child(even), table > tr:nth-child(even) {
+            background-color: var(--azul-suave);
+        }
+
+        tbody tr:hover, table > tr:hover {
+            background-color: #BBDEFB;
+            transition: background-color 0.2s;
+        }
+
+        tfoot td {
+            background-color: #ECEFF1;
+            color: var(--texto-suave);
+            font-size: 0.85rem;
+            font-style: italic;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* ============================================================
+           15. FORMULÁRIOS — inputs e botões modernos
+           ============================================================ */
+        fieldset {
+            border: 2px solid var(--azul-suave);
+            border-radius: var(--raio);
+            padding: 28px 24px;
+            background-color: #FAFAFA;
+        }
+
+        legend {
+            font-weight: 700;
+            color: var(--azul-medio);
+            font-size: 1.05rem;
+            padding: 0 12px;
+            background-color: white;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--texto-escuro);
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid var(--cinza-borda);
+            border-radius: var(--raio-btn);
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--texto-normal);
+            background-color: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--azul-claro);
+            box-shadow: 0 0 0 3px rgba(30,136,229,0.15);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--azul-medio), var(--verde-accent));
+            color: white;
+            border: none;
+            border-radius: var(--raio-btn);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           16. LISTAS — espaçamento e marcadores bonitos
+           ============================================================ */
+        ul, ol {
+            padding-left: 24px;
+            margin: 12px 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: var(--texto-normal);
+        }
+
+        ul li::marker {
+            color: var(--azul-claro);
+        }
+
+        ol li::marker {
+            color: var(--verde-accent);
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           17. HEADINGS — hierarquia visual clara
+           ============================================================ */
+        h4 {
+            font-size: 1rem;
+            color: var(--laranja);
+            margin-bottom: 6px;
+        }
+
+        /* ============================================================
+           18. STRONG / EM / ABBR — destaque inline
+           ============================================================ */
+        strong {
+            color: var(--azul-escuro);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--texto-suave);
+            font-style: italic;
+        }
+
+        abbr {
+            text-decoration: underline dotted;
+            cursor: help;
+            color: var(--azul-claro);
+        }
+
+        /* ============================================================
+           19. FOOTER — rodapé limpo
+           ============================================================ */
+        footer {
+            background-color: #1A237E;
+            color: #ECEFF1;
+            text-align: center;
+            padding: 32px 20px;
+            margin-top: 40px;
+        }
+
+        footer p, footer address {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--verde-accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           20. LINKS GERAL
+           ============================================================ */
+        a {
+            color: var(--azul-claro);
+        }
+
+        /* ============================================================
+           21. FIGURE / FIGCAPTION
+           ============================================================ */
+        figure {
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: var(--texto-suave);
+            font-style: italic;
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+           22. SEÇÕES COLORIDAS POR ID — identidade visual por tema
+           ============================================================ */
+        #pioneiros   { border-left-color: #7B1FA2; }
+        #bugs        { border-left-color: var(--vermelho); }
+        #internet    { border-left-color: var(--verde-accent); }
+        #linguagens  { border-left-color: var(--laranja); }
+        #linha-do-tempo { border-left-color: #0097A7; }
+        #nomes       { border-left-color: #AD1457; }
+        #acidentes   { border-left-color: #E65100; }
+        #dinheiro    { border-left-color: #2E7D32; }
+        #aleatorio   { border-left-color: #6A1B9A; }
+        #easter-eggs { border-left-color: #00897B; }
+        #bugs-absurdos { border-left-color: var(--vermelho); }
+        #comandos-secretos { border-left-color: #283593; }
