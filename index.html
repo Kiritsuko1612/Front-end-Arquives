@@ -2,151 +2,251 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Acervo de Raposas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-end Archives - Portfólio</title>
     <style>
-        /* Estilo da Assinatura */
-        .assinatura {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 80px;
-            z-index: 1000;
-            border-radius: 10px;
-        }
-
-        /* Menu de Navegação */
-        nav { 
-            background-color: #d1a360; /* Cor corrigida */
-            font-family: "Segoe UI", sans-serif;
-            width: 100%;
-        }
-
-        nav ul { 
-            list-style: none;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center; /* Digitação corrigida */
-        } 
-
-        nav ul li a {
-            display: block; /* Digitação corrigida */
-            padding: 15px 20px;
-            color: #fff;
-            text-decoration: none;
-            transition: background-color 0.4s;
+            box-sizing: border-box;
         }
 
-        nav ul li a:hover {
-            background-color: #2a6296;
-        }
-
-        /* Estilo do Corpo */
         body {
-            background-color: #c1905a;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .links {
             display: flex;
-            flex-direction: column; /* Faz os itens ficarem um abaixo do outro */
-            align-items: center;    /* Centraliza horizontalmente */
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #667eea;
             color: white;
         }
 
-        h1 { margin-top: 50px; }
-	/* Conteúdo central */
-.conteudo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 30px 12px;
-}
+        .btn-primary:hover {
+            background-color: #5568d3;
+        }
 
-.card {
-    width: min(900px, 95%);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    backdrop-filter: blur(6px);
-}
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+        }
 
-.card h2 {
-    margin-top: 0;
-}
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
 
-.video {
-    margin-top: 14px;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* mantém formato certinho */
-    border-radius: 12px;
-    overflow: hidden;
-}
+        .category {
+            margin-bottom: 40px;
+        }
 
-.video iframe {
-    width: 100%;
-    height: 100%;
-}
+        .category-title {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
 
-.botoes {
-    margin-top: 16px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
+        .raposas-header { background: linear-gradient(135deg, #d1a360 0%, #b8860b 100%); }
+        .portfolio-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .testes-header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .kambam-header { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .wisewolf-header { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
 
-.btn {
-    display: inline-block;
-    padding: 10px 14px;
-    border-radius: 12px;
-    background: rgba(0,0,0,0.18);
-    border: 1px solid rgba(255,255,255,0.25);
-    color: white;
-    text-decoration: none;
-}
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.btn:hover {
-    background: rgba(0,0,0,0.28);
-}
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Front-end Archives</h1>
+            <p>Portfólio de Projetos e Atividades</p>
+        </header>
 
-    <nav>
-        <ul>
-            <li><a href="https://unsplash.com/pt-br/s/fotografias/fox">My captures of wild life </a></li>
-            <li><a href="https://www.bbc.co.uk/programmes/articles/2Hh6PND76RFV6r9j2z3x0Jf/wonder-facts-foxes">Fox Resume</a></li>
-            <li><a href="https://www.bbc.com/news/topics/c2j9y3r5yryt">Fox wild News</a></li>
-            <li><a href="https://education-nationalgeographic-org.translate.goog/resource/tundra-biome/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc&_x_tr_hist=true">The Life In Tundra</a></li>
-        </ul>
-    </nav>
+        <!-- ATIVIDADES -->
+        <div class="category">
+            <h2 class="category-title">📚 Atividades Completas</h2>
+            <div class="projects-grid">
+                <!-- Raposas -->
+                <div class="project-card">
+                    <div class="card-header raposas-header">🦊 Acervo de Raposas</div>
+                    <div class="card-content">
+                        <p>Site sobre acervo de raposas com navegação melhorada e design responsivo.</p>
+                        <div class="links">
+                            <a href="atividades/raposas/index.html" class="btn btn-primary">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
 
-    <h1>Meu deposito</h1>
-    <p>Onde ficam minhas preciosas raposas</p>
-
-        <main class="conteudo">
-        <section class="card">
-            <h2>Cantinho das Raposas 🦊</h2>
-            <p>Um espaço fofinho pra treinar HTML/CSS e deixar o site com cara de página real.</p>
-
-            <div class="video">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F0GOOP82094?si=AHrx8KTFQqgmzIld" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
-
-            <div class="botoes">
-                <a class="btn" href="https://pt.wikipedia.org/wiki/Raposa" target="_blank">Sobre raposas</a>
-                <a class="btn" href="https://youtu.be/CEW6OsI222s?si=X4FW1ygO61ZoGuVQ"_blank">Mais vídeos</a>
+                <!-- Portfolio -->
+                <div class="project-card">
+                    <div class="card-header portfolio-header">💼 Portfólio Inicial</div>
+                    <div class="card-content">
+                        <p>Portfólio pessoal com meta tags otimizadas e estrutura semântica HTML5.</p>
+                        <div class="links">
+                            <a href="atividades/portfolio/Portfólio inicial com meta tags 24-02.html" class="btn btn-primary">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
 
+        <!-- PROJETOS PESSOAIS -->
+        <div class="category">
+            <h2 class="category-title">🎨 Projetos Pessoais</h2>
+            <div class="projects-grid">
+                <!-- WiseWolf -->
+                <div class="project-card">
+                    <div class="card-header wisewolf-header">🐺 Holo - Spice and Wolf</div>
+                    <div class="card-content">
+                        <p>Página interativa inspirada em Spice and Wolf com design fofo e moderno.</p>
+                        <div class="links">
+                            <a href="projetos/wisewolf/WiseWolf.html" class="btn btn-primary">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <img src="https://media1.tenor.com/m/92qdqQdsWogAAAAd/spice-and-wolf-spice-and-wolf-remake.gif" 
-         alt="Assinatura Holo" 
-         class="assinatura">
+        <!-- PROTÓTIPOS E TESTES -->
+        <div class="category">
+            <h2 class="category-title">🔧 Protótipos e Testes</h2>
+            <div class="projects-grid">
+                <!-- Testes de Navegação -->
+                <div class="project-card">
+                    <div class="card-header testes-header">🧪 Testes de Navegação</div>
+                    <div class="card-content">
+                        <p>Vários protótipos e testes de barra de navegação e estruturas HTML.</p>
+                        <div class="links">
+                            <a href="prototipos/testes-navegacao/" class="btn btn-secondary">Explorar Testes</a>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Kambam -->
+                <div class="project-card">
+                    <div class="card-header kambam-header">📱 Kanban</div>
+                    <div class="card-content">
+                        <p>Protótipo de quadro Kanban com interface interativa.</p>
+                        <div class="links">
+                            <a href="prototipos/kambam/kambam.html" class="btn btn-secondary">Visualizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Front-end Archives. Desenvolvido com ❤️</p>
+        </footer>
+    </div>
 </body>
 </html>
